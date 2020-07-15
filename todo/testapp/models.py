@@ -21,11 +21,17 @@ class TodoList(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return self.name
+
 class Access(models.Model):
     id = models.IntegerField(primary_key=True)
     user_id = models.ForeignKey(user, on_delete=models.CASCADE)
     list_id = models.ForeignKey(TodoList,on_delete=models.CASCADE)
     permission_type = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.id
 
 class TodoItem(models.Model):
     id = models.IntegerField(primary_key = True)
@@ -34,3 +40,6 @@ class TodoItem(models.Model):
     scheduled_on = models.DateTimeField(auto_now_add=True)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.heading
